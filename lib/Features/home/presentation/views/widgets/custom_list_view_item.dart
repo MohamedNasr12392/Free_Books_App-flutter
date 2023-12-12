@@ -8,8 +8,8 @@ class CustomListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        SizedBox(
-          height: MediaQuery.of(context).size.height * .3,
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
           child: AspectRatio(
             aspectRatio: 3/4,
             child: Container(              
