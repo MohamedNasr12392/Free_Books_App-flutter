@@ -1,15 +1,15 @@
 import 'package:bookly_app/core/utils/assets_paths.dart';
 import 'package:flutter/material.dart';
 
-class CustomListItem extends StatelessWidget {
-  const CustomListItem({super.key});
+class HorizontalListItem extends StatelessWidget {
+  const HorizontalListItem({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8),
+          padding: const EdgeInsets.only(right: 8),
           child: AspectRatio(
             aspectRatio: 3/4,
             child: Container(              
