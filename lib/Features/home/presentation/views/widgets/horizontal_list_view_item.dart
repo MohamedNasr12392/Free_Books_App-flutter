@@ -6,23 +6,19 @@ class HorizontalListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(right: 8),
-          child: AspectRatio(
-            aspectRatio: 3/4,
-            child: Container(              
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16),
-                  image: const DecorationImage(
-                image: AssetImage(AssetsPaths.testImage),
-                fit: BoxFit.fill,
-              )),
-            ),
-          ),
-        )
-      ],
+    return Padding(
+      padding: const EdgeInsets.only(right: 8),
+      child: AspectRatio(
+        aspectRatio: 3/4,
+        child: Container(              
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16),
+              image: const DecorationImage(
+            image: AssetImage(AssetsPaths.testImage),
+            fit: BoxFit.fill,
+          )),
+        ),
+      ),
     );
   }
 }
