@@ -1,8 +1,8 @@
 import 'package:bookly_app/core/utils/assets_paths.dart';
 import 'package:flutter/material.dart';
 
-class HorizontalListItem extends StatelessWidget {
-  const HorizontalListItem({super.key});
+class CustomBookImage extends StatelessWidget {
+  const CustomBookImage({super.key});
 
   @override
   Widget build(BuildContext context) {
