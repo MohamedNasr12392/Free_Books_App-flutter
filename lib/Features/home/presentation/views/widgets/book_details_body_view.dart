@@ -1,3 +1,4 @@
+import 'package:bookly_app/Features/home/data/models/book_model/book_model.dart';
 import 'package:bookly_app/Features/home/presentation/views/widgets/book_details_appbar.dart';
 import 'package:bookly_app/Features/home/presentation/views/widgets/book_details_buttons.dart';
 import 'package:bookly_app/Features/home/presentation/views/widgets/book_rate.dart';
@@ -7,7 +8,9 @@ import 'package:bookly_app/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 
 class BookDetailsViewBody extends StatelessWidget {
-  const BookDetailsViewBody({super.key});
+  const BookDetailsViewBody({super.key, required this.bookModel});
+
+  final BookModel bookModel ;
 
   @override
   Widget build(BuildContext context) {
@@ -23,15 +26,18 @@ class BookDetailsViewBody extends StatelessWidget {
                 const BookDetailsAppBar(),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: width * 0.18),
-                  child: const CustomBookImage(imageUrl: 'https://www.bing.com/images/search?view=detailV2&ccid=v5daMXcp&id=B49437377EB2DB4398ACF81B8E3110B2A7FBB9F1&thid=OIP.v5daMXcp4FOAQTCjkpvU9gHaLG&mediaurl=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F35%2Fbb%2F5d%2F35bb5d9b1a4d566bbaa3a42427b95946.jpg&cdnurl=https%3A%2F%2Fth.bing.com%2Fth%2Fid%2FR.bf975a317729e053804130a3929bd4f6%3Frik%3D8bn7p7IQMY4b%252bA%26pid%3DImgRaw%26r%3D0&exph=1960&expw=1308&q=books+photos&simid=608010766647246620&form=IRPRST&ck=2B69FDCDA74433B404D383A17E5BDA66&selectedindex=0&itb=0&ajaxhist=0&ajaxserp=0&vt=0&sim=11',),
+                  child: CustomBookImage(
+                    imageUrl: bookModel.volumeInfo.imageLinks?.thumbnail ?? '',
+                  ),
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.06,
                 ),
                 Text(
-                  "The Jungle Book",
+                  bookModel.volumeInfo.title ?? 'No Title',
                   style:
                       Styles.textStyle30.copyWith(fontWeight: FontWeight.w600),
+                      textAlign: TextAlign.center,
                 ),
                 const SizedBox(
                   height: 6,
@@ -39,7 +45,7 @@ class BookDetailsViewBody extends StatelessWidget {
                 Opacity(
                   opacity: 0.7,
                   child: Text(
-                    "Rudyard kipling",
+                    bookModel.volumeInfo.authors?[0] ?? 'UnKnown Author',
                     style: Styles.textStyle14.copyWith(
                         fontStyle: FontStyle.italic,
                         fontWeight: FontWeight.w500),
@@ -48,13 +54,17 @@ class BookDetailsViewBody extends StatelessWidget {
                 const SizedBox(
                   height: 18,
                 ),
-                const BookRate(
+                BookRate(
+                  count: bookModel.volumeInfo.pageCount ?? 0,
+                  rating: bookModel.volumeInfo.averageRating ?? 0,
                   mainAxisAlignment: MainAxisAlignment.center,
                 ),
                 const SizedBox(
                   height: 37,
                 ),
-                const BookDetailsButtons(),
+                BookDetailsButtons(
+                  bookModel: bookModel,
+                ),
                 const Expanded(
                   child: SizedBox(
                     height: 50,
@@ -72,11 +82,11 @@ class BookDetailsViewBody extends StatelessWidget {
                 const SizedBox(
                   height: 16,
                 ),
-                const SimilarBooksList(),
+                SimilarBooksList(bookModel: bookModel,),
               ],
             ),
           ),
-        ) , 
+        ),
       ],
     );
   }

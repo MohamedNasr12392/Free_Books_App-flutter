@@ -13,19 +13,15 @@ class CustomBookImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 8),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(16),
-        child: AspectRatio(
-            aspectRatio: 3 / 4,
-            child: CachedNetworkImage(
-              fit: BoxFit.fill,
-              imageUrl: imageUrl,
-              placeholder: (context, url) => const Center(child: CustomLoadingIndicator(),),
-              errorWidget: (context, url, error) => const Icon(Icons.error),
-            )),
-      ),
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(16),
+      child: AspectRatio(
+          aspectRatio: 3 / 4,
+          child: CachedNetworkImage(
+            fit: BoxFit.fill,
+            imageUrl: imageUrl,
+            errorWidget: (context, url, error) => const Icon(Icons.error),
+          )),
     );
   }
 }

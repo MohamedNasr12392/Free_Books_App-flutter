@@ -21,13 +21,13 @@ class ServerFailure extends Failure {
         return ServerFailure("Bad Certificate");
       case DioExceptionType.badResponse:
         return ServerFailure.fromResponse(
-            dioException.response!.statusCode!, dioException.response!.data);
+            dioException.response?.statusCode ?? 0, dioException.response?.data);
       case DioExceptionType.cancel:
         return ServerFailure('Request to ApiServer was canceld');
       case DioExceptionType.connectionError:
         return ServerFailure('Error while connecting to server');
       case DioExceptionType.unknown:
-        if (dioException.message!.contains('SocketException')) {
+        if (dioException.message?.contains('SocketException') ?? false) {
           return ServerFailure('No Internet Connection');
         }
         return ServerFailure('UnExpected Error , try again');
