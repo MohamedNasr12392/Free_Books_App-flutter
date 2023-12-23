@@ -1,6 +1,6 @@
-# bookly_app
+# Free_Books_App
 
-A new Flutter project.
+A new Flutter project providing free books for users.
 
 ## Getting Started
 
